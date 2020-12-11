@@ -7,7 +7,8 @@ const ItemSchema = new Schema (
         description: {type: String},
         category: {type: mongoose.Types.ObjectId, ref: 'Category', required: true},
         price: {type: Number},
-        inStock: {type: Number}
+        inStock: {type: Number},
+        image: {type: String}
     }
 );
 

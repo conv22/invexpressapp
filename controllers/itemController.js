@@ -1,6 +1,9 @@
 const Item = require('./../models/Item');
 const Category = require('./../models/Category');
 const { findById } = require('./../models/Item');
+const { body,validationResult } = require('express-validator');
+const upload = require('./../upload');
+
 
 exports.item_list = async (req, res) => {
     try {
@@ -30,18 +33,31 @@ exports.item_create_get = async (req, res) => {
     }
  };
 
- exports.item_create_post = async (req, res) => {
+ exports.item_create_post = (req, res) => {
+    body('name', 'Empty name').trim().isLength({ min: 1 }).escape(),
+    body('description', 'Description should not be empty').trim().isLength({min: 1}).escape(),
+    body('price').trim().escape(),
+    body('inStock').trim().escape();
      try {
-         const category = await Category.findById(req.body.category).lean();
-         const newItem = new Item ({
-             name: req.body.name,
-             description: req.body.description,
-             category: category,
-             price: req.body.price,
-             inStock: req.body.inStock
-         });
-         newItem.save(err => console.log(err));
-         res.redirect('/items');
+         upload(req, res, (err) => {
+             if (err) console.log (err);
+             Category.findById(req.body.category, (err, result) => {
+                 if (err) console.log(err);
+                 const newItem = new Item ({
+                    name: req.body.name,
+                    description: req.body.description,
+                    category: result,
+                    price: req.body.price,
+                    inStock: req.body.inStock,
+                    image: req.file ? req.file.path : 'uploads/no_image.png'
+                });
+                newItem.save((err, data) => {
+                    if (err) console.log(err);
+                    res.redirect('/items')
+                });
+                });
+
+             });
      } catch (err) {
          console.log (err);
      }

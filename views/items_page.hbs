@@ -1,6 +1,7 @@
 <div class='item-container'>
     {{#each items}}
     <div class='item'>
+        <img src='/{{image}}' width='100px'>
         <span class='item-span-name'><a href='items/{{_id}}'>{{name}} </a></span>
         <span class='item-span-description'>{{description}}</span>
         <span class='item-span-category'>{{category.name}}</span>

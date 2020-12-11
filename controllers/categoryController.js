@@ -1,5 +1,6 @@
 const Category = require('./../models/Category');
 const Item = require('./../models/Item');
+const upload = require('./../upload');
 exports.category_list = async (req, res) => {
     try {
         const categories = await Category.find({}).lean();
@@ -20,3 +21,25 @@ exports.category_detail = async (req, res) => {
         console.log(err);
     }
 };
+
+exports.category_create_get = (req, res) => res.render('category_form', {title: 'Category form'});
+
+exports.category_create_post = async (req, res) => {
+    try {
+        upload(req, res, (err) => {
+            if (err) console.log(err);
+            const category = new Category({
+                name: req.body.name,
+                description: req.body.description,
+                image: req.file ? req.file.path : 'uploads/no_image.png'
+            });
+            category.save((err, result) => {
+                if (err) console.log(err);
+                console.log(category);
+                res.redirect('/categories');
+            })
+        }) 
+    } catch (err) {
+        console.log(err)
+    }
+}

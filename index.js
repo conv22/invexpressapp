@@ -4,7 +4,6 @@ const exphbs = require('express-handlebars');
 const categoryRouter = require('./routes/category');
 const itemRouter = require('./routes/item')
 const path = require('path');
-const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
@@ -21,6 +20,7 @@ app.set('views', 'views');
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => res.redirect('/categories'));
+app.use('/uploads', express.static('uploads'))
 app.use('/categories', categoryRouter);
 app.use('/items', itemRouter);
 

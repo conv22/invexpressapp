@@ -1,4 +1,5 @@
 <div class='item-container'>
+    {{#if items.[1]}}
     {{#each items}}
     <div class='item'>
         <span class='item-span-name'> <a href='/items/{{_id}}'>{{name}}</a></span>
@@ -6,6 +7,10 @@
         <span class='item-span-category'>{{category.name}}</span>
         <span class='item-span-info'>{{price}}$ Left: {{inStock}}</span>
     </div>
-
     {{/each}}
+    {{else}}
+    <div class='no-items'>
+        <span>There are no items yet</span>
+    </div>
+    {{/if}}
 </div>
