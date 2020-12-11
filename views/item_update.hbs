@@ -1,0 +1,20 @@
+<div class='form-div'>
+    <form method='POST'>
+        <label for="name">Product title</label>
+        <input type='text' name='name' value={{item.name}}>
+        <label for="description">Product description</label>
+        <input type='text' name='description' value={{item.description}}>
+        <label for='category'>Category</label>
+        <p><select name='category'>
+                {{#each categories}}
+                <option name='{{name}}' value='{{_id}}'>{{name}}</option>
+                {{/each}}
+            </select></p>
+        <label for='price'>Price in $</label>
+        <input type='number' name='price' value={{item.price}}>
+        <label for='inStock'>Quantity</label>
+        <input type='number' name='inStock' value={{item.inStock}}>
+        <button type='submit' class='btn btn-create'>Update</button>
+
+    </form>
+</div>

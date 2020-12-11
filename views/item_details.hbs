@@ -1,0 +1,8 @@
+<div class='item-detail-div'>
+    <span>{{item.name}}</span>
+    <span>{{item.category.name}}</span>
+    <span>{{item.description}}</span>
+    <span>{{item.price}}$ Left: {{item.inStock}}</span>
+    <span><a class='btn btn-update' href='/items/{{item._id}}/update'>Update</a> <a class='btn btn-delete'
+            href='/items/{{item._id}}/delete'>Delete</a></span>
+</div>

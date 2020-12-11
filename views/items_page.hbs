@@ -1,0 +1,10 @@
+<div class='item-container'>
+    {{#each items}}
+    <div class='item'>
+        <span class='item-span-name'><a href='items/{{_id}}'>{{name}} </a></span>
+        <span class='item-span-description'>{{description}}</span>
+        <span class='item-span-category'>{{category.name}}</span>
+        <span class='item-span-info'>{{price}}$ Left: {{inStock}}</span>
+    </div>
+    {{/each}}
+</div>
