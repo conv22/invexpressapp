@@ -1,7 +1,10 @@
 <div class='item-container'>
-    {{#if items.[1]}}
+    {{#if items.[0]}}
     {{#each items}}
     <div class='item'>
+        <div class='item-img'>
+            <img src='/{{image}}'>
+        </div>
         <span class='item-span-name'> <a href='/items/{{_id}}'>{{name}}</a></span>
         <span class='item-span-description'>{{description}}</span>
         <span class='item-span-category'>{{category.name}}</span>

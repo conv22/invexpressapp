@@ -35,7 +35,8 @@ exports.item_create_get = async (req, res) => {
 
  exports.item_create_post = (req, res) => {
     body('name', 'Empty name').trim().isLength({ min: 1 }).escape(),
-    body('description', 'Description should not be empty').trim().isLength({min: 1}).escape(),
+    body('description', 'Description should not be empty')
+    .trim().isLength({min: 1}).escape(),
     body('price').trim().escape(),
     body('inStock').trim().escape();
      try {
@@ -85,7 +86,8 @@ exports.item_create_get = async (req, res) => {
      try {
          const categories = await Category.find({}).lean();
          const item = await Item.findById(req.params.id).populate('category').lean();
-         res.render('item_update', {title: 'Update' + item.name, item: item, categories: categories});
+         res.render('item_update', {title: 'Update' + item.name, item: item,
+         categories: categories});
      } catch (err) {
          console.log(err);
      }
