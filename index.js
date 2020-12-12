@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const categoryRouter = require('./routes/category');
-const itemRouter = require('./routes/item')
+const itemRouter = require('./routes/item');
 const path = require('path');
 require('dotenv').config();
 
@@ -28,8 +28,7 @@ async function start () {
     try {
         await mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
         app.listen(PORT, () => console.log('The server is running on your local host'));
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
     };
 };
